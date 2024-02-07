@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-const endpoint = 'https://api.themoviedb.org/3/search/movie?api_key=5b239fcf9ce7a251e2b2063ceef54e47&query=witch';
+const endpoint = 'https://api.themoviedb.org/3/search/movie?api_key=5b239fcf9ce7a251e2b2063ceef54e47';
 import { store } from './data/store.js';
 
 
@@ -15,8 +15,11 @@ export default {
     AppHeader,
     AppMain,
   },
+  methods: {
+
+  },
   created() {
-    axios.get(endpoint).then(res => {
+    axios.get(endpoint + `&query=${this.movie}`).then(res => {
       store.products = res.data.results;
       console.log(res.data.results);
     })
