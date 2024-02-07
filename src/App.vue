@@ -1,4 +1,5 @@
 <script>
+import { store } from './data/store.js'
 </script>
 
 <template></template>
