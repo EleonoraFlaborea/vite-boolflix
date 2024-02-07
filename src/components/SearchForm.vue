@@ -4,6 +4,15 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+    <section>
+        <div>
+            <input type="text">
+        </div>
+        <div>
+            <button></button>
+        </div>
+    </section>
+</template>
 
 <style></style>

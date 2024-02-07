@@ -10,6 +10,7 @@ export default {
 
 <template>
     <ProductCard />
+    <ProductCard />
 </template>
 
 <style></style>
