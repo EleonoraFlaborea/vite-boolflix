@@ -14,6 +14,10 @@ export default {
             <h1>MOVIES</h1>
             <ul v-for="movie in store.movies" :key="movie.id">
                 <li>{{ movie.title }}</li>
+                <li>{{ movie.original_title }}</li>
+                <li>{{ movie.original_language }}</li>
+                <li>{{ movie.vote_average }}</li>
+
             </ul>
         </section>
     </main>
