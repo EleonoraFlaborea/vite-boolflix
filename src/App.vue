@@ -10,15 +10,32 @@ export default {
   data: () => ({ store }),
   components: { SearchForm },
   methods: {
-    searchMovies(titlefilter) {
-      console.log(titlefilter)
+    setTitleFilter(term) {
+      store.filter = term;
+    },
+
+    searchMovies() {
+      if (!store.filter) {
+        store.movies = [];
+        return;
+      }
+      const { baseUri, apiKey, language } = api;
+
+      axios.get(`${baseUri}/search/movie?api_key=${apiKey}&language=${language}&query=${store.filter}`)
+        .then(res => {
+          store.movies = res.data.results;
+          console.log(res.data.results);
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
 </script>
 
 <template>
-  <SearchForm placeholder="Scrivi..." buttonLabel="Cerca" />
+  <SearchForm placeholder="Scrivi..." buttonLabel="Cerca" @form-submit="searchMovies" @term-change="setTitleFilter" />
 </template>
 
 <style lang="scss" scoped>
