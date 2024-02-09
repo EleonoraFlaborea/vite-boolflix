@@ -28,13 +28,33 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
+        },
+        searchSeries() {
+            if (!store.filter) {
+                store.series = [];
+                return;
+            }
+            const { baseUri, apiKey, language } = api;
+
+            axios.get(`${baseUri}/search/tv?api_key=${apiKey}&language=${language}&query=${store.filter}`)
+                .then(res => {
+                    store.series = res.data.results;
+                    console.log(res.data.results);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        searchAll() {
+            this.searchMovies();
+            this.searchSeries();
         }
     }
 }
 </script>
 
 <template>
-    <SearchForm placeholder="Scrivi..." buttonLabel="Cerca" @form-submit="searchMovies" @term-change="setTitleFilter" />
+    <SearchForm placeholder="Scrivi..." buttonLabel="Cerca" @form-submit="searchAll" @term-change="setTitleFilter" />
 </template>
 
 <style lang="scss" scoped></style>
